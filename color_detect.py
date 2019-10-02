@@ -6,11 +6,11 @@ cap = cv2.VideoCapture(0)
 
 def redCircleDetect():
       global frame
-      (contours,hierarchy)=cv2.findContours(red,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+      (contours,hierarchy)=cv2.findContours(red,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)#finding contours in "red" range
       #(_,contours,hierarchy)=cv2.findContours(red,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE) 
       for pic, contour in enumerate(contours):
                 area = cv2.contourArea(contour)
-                if(area>500):
+                if(area>500): #Lower limit on area of detected object
                         x,y,w,h = cv2.boundingRect(contour)
                         frame = cv2.rectangle(frame,(x,y),(x+w,y+h),(0,0,255),2)
                         cv2.putText(frame,"Red",(x,y),cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0,0,255))
